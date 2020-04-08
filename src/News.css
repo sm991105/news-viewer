@@ -1,0 +1,109 @@
+body {
+  background: linear-gradient(to right, #136a8a, #267871);
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.News__data {
+  background-color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  display: inline-table;
+  width: 320px;
+  height: 100%;
+  margin: 20px;
+  border: solid 2px rgb(255, 255, 255);
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.News__title {
+  margin: 10px;
+  margin-bottom: 20px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 27px;
+}
+.News__desc {
+  margin: 5px;
+  padding-top: 15px;
+}
+.News__date {
+  margin-left: 5px;
+}
+
+img {
+  margin-left: 10px;
+  width: 300px;
+  height: 180px;
+  border-radius: 10px;
+}
+
+.News__link {
+  float: right;
+  border: solid 2px gainsboro;
+  border-radius: 5px;
+  color: rgb(60, 97, 85);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-top: 15px;
+  text-decoration: transparent;
+  transition-property: background-color, color, border;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+.News__link:hover {
+  background-color: #1f7277;
+  color: white;
+  border: solid 2px #1f7277;
+}
+
+.loading {
+  text-align: center;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 30px;
+  margin-top: 100px;
+}
+nav {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: gainsboro;
+  margin-top: 20px;
+}
+.News__countries {
+  display: inline-block;
+}
+nav a {
+  color: azure;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 13px;
+  padding-bottom: 3px;
+  padding-top: 5px;
+  margin-left: 3px;
+  border: solid 1px transparent;
+  border-radius: 5px;
+  text-decoration: transparent;
+  transition-property: background, color, border;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+nav a:hover {
+  background: azure;
+  color: #136a8a;
+  border: solid 1px transparent;
+}
+.mypage {
+  margin-right: 20px;
+  display: inline-block;
+  float: right;
+}
