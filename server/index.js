@@ -5,9 +5,11 @@ const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const config = require("./config/key");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // Connect to mongoDB
 mongoose
@@ -35,7 +37,7 @@ app.post("/users/register", (req, res) => {
 
   user.checkEmail(req.body.email, function (err, result) {
     if (result != null) {
-      return res.json({ success: false, message: "User already exists" });
+      return res.json({ success: false, message: "User already exists." });
     }
     if (err) {
       return res.json({ success: false, err });
@@ -45,6 +47,33 @@ app.post("/users/register", (req, res) => {
         res.json({ success: false, err });
       }
       res.json({ success: true, email: user.email }).status(200);
+    });
+  });
+});
+
+// Login router
+app.post("/users/login", (req, res) => {
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (err) {
+      return res.json({ loginSuccess: false, message: "User not found." });
+    }
+    user.comparePassword(req.body.password, function (err, result) {
+      if (err) {
+        return res.json({
+          loginSuccess: false,
+          message: "Wrong password.",
+        });
+      }
+      user.generateToken((err) => {
+        if (err) {
+          return res.status(400).send(err);
+        }
+        res.cookie("toughcookie", user.token).status(200).json({
+          loginSuccess: true,
+          email: user.email,
+          cookie: req.cookies,
+        });
+      });
     });
   });
 });

@@ -23,6 +23,14 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// checkEmail method
+userSchema.methods.checkEmail = function (email, callback) {
+  User.findOne({ email: email }, function (err, user) {
+    console.log(user);
+    callback(err, user);
+  });
+};
+
 // Before saving the record, encrypt plain password into hash
 userSchema.pre("save", function (next) {
   var user = this;
@@ -49,17 +57,21 @@ userSchema.methods.comparePassword = function (plainPass, callback) {
   var user = this;
   bcrypt.compare(plainPass, user.password, function (err, result) {
     if (err) {
-      callback(err, null);
+      return callback(err, null);
     }
     callback(null, result);
   });
 };
 
-// checkEmail method
-userSchema.methods.checkEmail = function (email, callback) {
-  User.findOne({ email: email }, function (err, user) {
-    console.log(user);
-    callback(err, user);
+userSchema.methods.generateToken = function (callback) {
+  var user = this;
+  var token = jwt.sign(user._id.toHexString(), "mySecret");
+  user.token = token;
+  user.save(function (err) {
+    if (err) {
+      return callback(err);
+    }
+    callback(null);
   });
 };
 
