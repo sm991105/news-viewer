@@ -8,7 +8,8 @@ class News_france extends Component {
   };
   getNews = async () => {
     const news = await axios.get(
-      "https://newsapi.org/v2/top-headlines?country=fr&apiKey=f05aeb66554641759b60756e50c16608"
+      //"https://newsapi.org/v2/top-headlines?country=fr&apiKey=f05aeb66554641759b60756e50c16608"
+      "http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f05aeb66554641759b60756e50c16608"
     );
     console.log(news);
     this.setState({
@@ -27,7 +28,11 @@ class News_france extends Component {
       newsList.map((news, index) => (
         <div className="News__data" key={index}>
           <h3 className="News__title">{news.title}</h3>
-          <img className="News__img" src={news.urlToImage} alt={news.title} />
+          <img
+            className="News__img"
+            src={"https://usercontents-c.styleshare.io/images/32400638/640x-"}
+            alt={news.title}
+          />
           <hr />
           <div className="News__date">{news.publishedAt}</div>
           <div className="News__desc">{news.description}</div>
