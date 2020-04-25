@@ -1,0 +1,77 @@
+.Login {
+  display: inline-block;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: azure;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -150px;
+  border-radius: 10px;
+  padding: 40px;
+  justify-content: center;
+  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.Login h2 {
+  text-align: center;
+}
+.Login h4 {
+  font-size: 15px;
+  font-weight: lighter;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 3px;
+}
+.Login a {
+  font-size: 15px;
+  margin-left: 85px;
+  color: azure;
+}
+.Login a:hover {
+  color: #ccc;
+}
+
+input[type="text"] {
+  width: 200px;
+  height: 30px;
+  margin: 3px;
+  border: none;
+  border-radius: 15px;
+  padding-left: 12px;
+}
+input:focus::placeholder {
+  color: transparent;
+}
+input[type="password"] {
+  width: 200px;
+  height: 30px;
+  margin: 3px;
+  border: none;
+  border-radius: 15px;
+  padding-left: 12px;
+}
+input[type="submit"] {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  width: 70px;
+  height: 30px;
+  margin-top: 30px;
+  color: #1b6f7f;
+  border-radius: 3px;
+  border: none;
+  margin-left: 75px;
+}
+input[type="submit"]:hover {
+  background-color: #ccc;
+}
+::-webkit-input-placeholder {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding-left: 5px;
+}
+
+.About {
+  color: #ccc;
+  margin-top: 30px;
+}

@@ -1,11 +1,11 @@
 import React from "react";
-import "./News.css";
+import "./Home.css";
 
 const About = () => {
+  const owner = "JoodyMoody";
   return (
-    <div>
-      <h2>소개</h2>
-      <p>My page</p>
+    <div className="About">
+      <p>Card News-Viewer, 2020, owned by @{owner}</p>
     </div>
   );
 };

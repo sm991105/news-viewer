@@ -8,7 +8,7 @@ class News_uk extends Component {
   };
   getNews = async () => {
     const news = await axios.get(
-      "http://newsapi.org/v2/top-headlines?country=gb&apiKey=f05aeb66554641759b60756e50c16608"
+      "https://newsapi.org/v2/top-headlines?country=gb&apiKey=f05aeb66554641759b60756e50c16608"
     );
     console.log(news);
     this.setState({
@@ -31,7 +31,7 @@ class News_uk extends Component {
           <hr />
           <div className="News__date">{news.publishedAt}</div>
           <div className="News__desc">{news.description}</div>
-          <a className="News__link" href={news.url}>
+          <a className="News__link" href={news.url} target="_blank">
             See All
           </a>
         </div>
