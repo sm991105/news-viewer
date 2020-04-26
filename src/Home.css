@@ -32,7 +32,7 @@
   color: #ccc;
 }
 
-input[type="text"] {
+input[type="email"] {
   width: 200px;
   height: 30px;
   margin: 3px;
@@ -51,7 +51,7 @@ input[type="password"] {
   border-radius: 15px;
   padding-left: 12px;
 }
-input[type="submit"] {
+button {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   width: 70px;
@@ -62,7 +62,7 @@ input[type="submit"] {
   border: none;
   margin-left: 75px;
 }
-input[type="submit"]:hover {
+button:hover {
   background-color: #ccc;
 }
 ::-webkit-input-placeholder {

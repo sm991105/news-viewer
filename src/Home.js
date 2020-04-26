@@ -1,28 +1,12 @@
 import React, { Component } from "react";
-import "./Home.css";
+import axios from "axios";
+import LoginForm from "./LoginForm";
 
 class Home extends Component {
-  state = {
-    id: "",
-    password: "",
-  };
+  state = { loggedin: false };
   render() {
-    return (
-      <div>
-        <div className="Login">
-          <h2>Login</h2>
-          <form action="" method="post">
-            <input type="text" name="id" placeholder="ID" />
-            <br />
-            <input type="password" name="password" placeholder="Password" />
-            <br />
-            <input type="submit" value="submit" />
-          </form>
-          <h4>Don't have an account?</h4>
-          <a href="">Sign up</a>
-        </div>
-      </div>
-    );
+    return <LoginForm />;
   }
 }
+
 export default Home;

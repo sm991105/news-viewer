@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../News.css";
+
 class News_france extends Component {
   state = {
     isLoading: true,
@@ -9,7 +10,7 @@ class News_france extends Component {
   getNews = async () => {
     const news = await axios.get(
       //"https://newsapi.org/v2/top-headlines?country=fr&apiKey=f05aeb66554641759b60756e50c16608"
-      "http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f05aeb66554641759b60756e50c16608"
+      "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f05aeb66554641759b60756e50c16608"
     );
     console.log(news);
     this.setState({
@@ -19,6 +20,7 @@ class News_france extends Component {
   };
   componentDidMount() {
     this.getNews();
+    axios.get("/api/hello").then((response) => console.log(response.data));
   }
   render() {
     const { isLoading, newsList } = this.state;

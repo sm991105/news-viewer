@@ -31,6 +31,10 @@ app.get("/", (req, res) => {
   res.send("This is a server for the NewsViewer.");
 });
 
+app.get("/api/hello", (req, res) => {
+  res.send("안녕하세요~");
+});
+
 // Register router
 app.post("/users/register", (req, res) => {
   var user = new User(req.body); // new record

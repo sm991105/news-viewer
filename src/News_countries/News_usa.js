@@ -8,7 +8,7 @@ class News_usa extends Component {
   };
   getNews = async () => {
     const news = await axios.get(
-      "http://newsapi.org/v2/top-headlines?country=us&apiKey=f05aeb66554641759b60756e50c16608"
+      "https://newsapi.org/v2/top-headlines?country=us&apiKey=f05aeb66554641759b60756e50c16608"
     );
     console.log(news);
     this.setState({
