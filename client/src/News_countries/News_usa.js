@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../News.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 class News_usa extends Component {
   state = {
     isLoading: true,
@@ -29,7 +33,8 @@ class News_usa extends Component {
           <h3 className="News__title">{news.title}</h3>
           <img className="News__img" src={news.urlToImage} alt={news.title} />
           <hr />
-          <div className="News__date">{news.publishedAt}</div>
+          <div className="News__date">{news.publishedAt.substring(0, 10)}</div>
+          <div className="News__time">{news.publishedAt.substring(11, 16)}</div>
           <div className="News__desc">{news.description}</div>
           <a
             className="News__link"
@@ -39,6 +44,9 @@ class News_usa extends Component {
           >
             See All
           </a>
+          <button className="star_icon">
+            <FontAwesomeIcon icon={faStar} />
+          </button>
         </div>
       ))
     );

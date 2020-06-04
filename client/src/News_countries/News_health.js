@@ -29,7 +29,8 @@ class News_health extends Component {
           <h3 className="News__title">{news.title}</h3>
           <img className="News__img" src={news.urlToImage} alt={news.title} />
           <hr />
-          <div className="News__date">{news.publishedAt}</div>
+          <div className="News__date">{news.publishedAt.substring(0, 10)}</div>
+          <div className="News__time">{news.publishedAt.substring(11, 16)}</div>
           <div className="News__desc">{news.description}</div>
           <a
             className="News__link"
