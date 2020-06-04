@@ -7,7 +7,6 @@ mongoose
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useMongoClient: true,
   })
   .then(() => console.log("Connected to MongoDB."))
   .catch((e) => {
