@@ -44,7 +44,7 @@ const App = () => {
               Business
             </Link>
             <Link id="health" to="/health">
-              health
+              Health
             </Link>
             <Link id="sports" to="/sports">
               Sports
@@ -72,14 +72,14 @@ const App = () => {
             <Link id="usa" to="/">
               USA
             </Link>
-            <Link id="uk" to="/uk">
-              UK
+            <Link id="business" to="/business">
+              Business
             </Link>
-            <Link id="france" to="/france">
-              France
+            <Link id="health" to="/health">
+              Health
             </Link>
-            <Link id="southKorea" to="/southKorea">
-              South Korea
+            <Link id="sports" to="/sports">
+              Sports
             </Link>
           </div>
         </nav>

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../News.css";
-class News_southKorea extends Component {
+class News_health extends Component {
   state = {
     isLoading: true,
     newsList: [],
   };
   getNews = async () => {
     const news = await axios.get(
-      "https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=f05aeb66554641759b60756e50c16608"
+      `https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
     );
     console.log(news);
     this.setState({
@@ -45,4 +45,4 @@ class News_southKorea extends Component {
   }
 }
 
-export default News_southKorea;
+export default News_health;
