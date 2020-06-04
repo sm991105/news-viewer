@@ -72,7 +72,15 @@ app.get("/api/users/authenticate", async (req, res) => {
   res.send(user);
 });
 
-app.get("/api/users/getUser", (req, res) => {});
+const path = require("path");
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+}
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}.`);
