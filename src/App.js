@@ -1,24 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, BrowserRouter, Link } from "react-router-dom";
+import axios from "axios";
 import "./News.css";
 import About from "./About.js";
-import Home from "./Home.js";
+import Scrapped from "./Scrapped";
 import News_usa from "./News_countries/News_usa.js";
-import News_uk from "./News_countries/News_uk.js";
-import News_france from "./News_countries/News_france.js";
-import News_southKorea from "./News_countries/News_southKorea";
+import News_sports from "./News_countries/News_sports.js";
+import News_business from "./News_countries/News_business.js";
+import News_health from "./News_countries/News_health";
+import Login from "./Login";
+import Register from "./Register";
 
 const App = () => {
-  return (
+  const [IsLoggedIn, setIsLoggedIn] = useState(false);
+
+  const loginCheck = async () => {
+    axios.get("/api/users/authenticate").then((response) => {
+      if (response.data.email) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+      console.log(IsLoggedIn);
+    });
+  };
+  useEffect(() => {
+    loginCheck();
+  });
+
+  return IsLoggedIn ? (
     <BrowserRouter>
       <div>
         <nav>
           <div className="mypage">
-            <Link to="/">Home</Link>
+            <Link to="/scrapped">Favorites</Link>
             <Link to="/about">About</Link>
           </div>
           <div className="News__countries">
-            <Link id="usa" to="/usa">
+            <Link id="usa" to="/">
+              USA
+            </Link>
+            <Link id="business" to="/business">
+              Business
+            </Link>
+            <Link id="health" to="/health">
+              health
+            </Link>
+            <Link id="sports" to="/sports">
+              Sports
+            </Link>
+          </div>
+        </nav>
+        <hr />
+        <Route exact path="/" component={News_usa} />
+        <Route path="/business" component={News_business} />
+        <Route path="/health" component={News_health} />
+        <Route path="/sports" component={News_sports} />
+        <Route path="/scrapped" component={Scrapped} />
+        <Route path="/about" component={About} />
+      </div>
+    </BrowserRouter>
+  ) : (
+    <BrowserRouter>
+      <div>
+        <nav>
+          <div className="mypage">
+            <Link to="/login">Login</Link>
+            <Link to="/about">About</Link>
+          </div>
+          <div className="News__countries">
+            <Link id="usa" to="/">
               USA
             </Link>
             <Link id="uk" to="/uk">
@@ -33,12 +84,13 @@ const App = () => {
           </div>
         </nav>
         <hr />
-        <Route path="/" component={Home} exact={true} />
+        <Route exact path="/" component={News_usa} />
+        <Route path="/business" component={News_business} />
+        <Route path="/health" component={News_health} />
+        <Route path="/sports" component={News_sports} />
+        <Route path="/login" component={Login} />
         <Route path="/about" component={About} />
-        <Route path="/usa" component={News_usa} />
-        <Route path="/uk" component={News_uk} />
-        <Route path="/france" component={News_france} />
-        <Route path="/southKorea" component={News_southKorea} />
+        <Route path="/register" component={Register} />
       </div>
     </BrowserRouter>
   );

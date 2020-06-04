@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import axios from "axios";
 import "./Home.css";
 
 function LoginForm(props) {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const [Error, setError] = useState("");
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
@@ -18,16 +22,27 @@ function LoginForm(props) {
       email: Email,
       password: Password,
     };
-  };
-  const handleSignup = (event) => {
-    event.preventDefault();
+
+    axios
+      .post("/api/users/login", body)
+      .then((response) => {
+        if (!response.data.token) {
+          setError(response.data.error);
+        } else {
+          window.location.replace("/");
+          //props.history.push("/");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
     <div className="Login">
       <h2>Login</h2>
 
-      <form onSubmit={onSubmitHandler}>
+      <form>
         <input
           type="email"
           value={Email}
@@ -42,10 +57,15 @@ function LoginForm(props) {
           onChange={onPasswordHandler}
         />
         <br />
-        <button>Login</button>
+        <div className="login_err">{Error}</div>
+        <button className="login_btn" onClick={onSubmitHandler}>
+          Login
+        </button>
       </form>
-      <h4 style={{ marginBottom: -10 }}>Don't have an account?</h4>
-      <button onClick={handleSignup}>Sign up</button>
+      <h4>Don't have an account?</h4>
+      <Link className="signup_btn" to="/register">
+        Sign up
+      </Link>
     </div>
   );
 }

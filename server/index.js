@@ -1,87 +1,79 @@
 const express = require("express");
+require("./db/mongoose"); // holy fucking shit !!!!!!
+const User = require("./db/models/User");
 const app = express();
-const port = 5000;
-const mongoose = require("mongoose");
-const { User } = require("./models/User");
-const config = require("./config/key");
-const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const port = process.env.PORT || 5000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cookieParser());
-
-// Connect to mongoDB
-mongoose
-  .connect(config.mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB.");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-// Home router
-app.get("/", (req, res) => {
-  res.send("This is a server for the NewsViewer.");
+// test server
+app.get("/api/test", (req, res) => {
+  res.send("Welcome!");
 });
 
-app.get("/api/hello", (req, res) => {
-  res.send("안녕하세요~");
-});
-
-// Register router
-app.post("/users/register", (req, res) => {
-  var user = new User(req.body); // new record
-
-  user.checkEmail(req.body.email, function (err, result) {
-    if (result != null) {
-      return res.json({ success: false, message: "User already exists." });
-    }
-    if (err) {
-      return res.json({ success: false, err });
-    }
-    user.save((err) => {
-      if (err) {
-        res.json({ success: false, err });
-      }
-      res.json({ success: true, email: user.email }).status(200);
+// login
+app.post("/api/users/login", (req, res) => {
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      return user.comparePassword(req.body.password); // define method
+    })
+    .then((user) => {
+      res.cookie("AuthCookie", user.token).send(user);
+    })
+    .catch((e) => {
+      res.send({ error: "Wrong email or password" });
     });
-  });
 });
 
-// Login router
-app.post("/users/login", (req, res) => {
-  User.findOne({ email: req.body.email }, function (err, user) {
-    if (err) {
-      return res.json({ loginSuccess: false, message: "User not found." });
-    }
-    user.comparePassword(req.body.password, function (err, result) {
-      if (err) {
-        return res.json({
-          loginSuccess: false,
-          message: "Wrong password.",
-        });
-      }
-      user.generateToken((err) => {
-        if (err) {
-          return res.status(400).send(err);
-        }
-        res.cookie("toughcookie", user.token).status(200).json({
-          loginSuccess: true,
-          email: user.email,
-          cookie: req.cookies,
-        });
-      });
-    });
-  });
+// Register
+app.post("/api/users/register", async (req, res) => {
+  const user = new User(req.body);
+  try {
+    const token = await user.generateToken();
+    user.token = token;
+    await user.save();
+    res.send(user);
+  } catch (e) {
+    res.send(e);
+  }
 });
+
+// Logout
+app.get("/api/users/logout", (req, res) => {
+  res.cookie("AuthCookie", "").send(res.cookie.AuthCookie);
+});
+
+app.patch("/api/users/update/password", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      email: req.body.email,
+      password: req.body.currentPassword,
+    });
+    if (!user) {
+      res.send("Wrong current password");
+    } else {
+      await User.findOneAndUpdate(
+        { email: req.body.email },
+        { password: req.body.newPassword },
+        { runValidators: true }
+      );
+      res.send("Password updated");
+    }
+  } catch (e) {
+    res.send("Password must have at least 8 characters.");
+  }
+});
+
+// Authenticate
+app.get("/api/users/authenticate", async (req, res) => {
+  const token = req.cookies.AuthCookie; // asd1234
+  const user = await User.findOne({ token });
+  res.send(user);
+});
+
+app.get("/api/users/getUser", (req, res) => {});
 
 app.listen(port, () => {
-  console.log(`Connected to port ${port}`);
+  console.log(`Server is up on port ${port}.`);
 });

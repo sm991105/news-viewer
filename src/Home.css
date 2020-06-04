@@ -51,7 +51,15 @@ input[type="password"] {
   border-radius: 15px;
   padding-left: 12px;
 }
-button {
+input[type="text"] {
+  width: 200px;
+  height: 30px;
+  margin: 3px;
+  border: none;
+  border-radius: 15px;
+  padding-left: 12px;
+}
+.login_btn {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   width: 70px;
@@ -62,8 +70,9 @@ button {
   border: none;
   margin-left: 75px;
 }
-button:hover {
+.login_btn:hover {
   background-color: #ccc;
+  cursor: pointer;
 }
 ::-webkit-input-placeholder {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -71,7 +80,49 @@ button:hover {
   padding-left: 5px;
 }
 
+.signup_btn {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border: none;
+  color: azure;
+  text-decoration: underline;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: lighter;
+  margin-left: 75px;
+  cursor: pointer;
+}
+
 .About {
   color: #ccc;
   margin-top: 30px;
+}
+
+.login_err {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.signup_text {
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: azure;
+  font-size: 20px;
+}
+.register_form {
+  display: inline-block;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: azure;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -150px;
+  border-radius: 10px;
+  padding: 40px;
+  justify-content: center;
+  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

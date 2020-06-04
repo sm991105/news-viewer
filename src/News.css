@@ -1,17 +1,17 @@
 body {
   background: linear-gradient(to right, #136a8a, #267871);
   margin-left: 50px;
-  margin-right: 50px;
+  margin-right: 40px;
 }
 .News__data {
   background-color: white;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 17px;
+  line-height: 24px;
   display: inline-table;
-  width: 320px;
-  height: 100%;
+  width: 30px;
+  height: 80%;
   margin: 20px;
   border: solid 2px rgb(255, 255, 255);
   border-radius: 15px;
@@ -29,6 +29,7 @@ body {
 .News__desc {
   margin: 5px;
   padding-top: 15px;
+  text-align: justify;
 }
 .News__date {
   margin-left: 5px;
